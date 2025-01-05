@@ -1,0 +1,13 @@
+django
+gunicorn
+requests
+django-dotenv
+psycopg2-binary
+django-storages
+boto3
+django-tailwind
+django-allauth
+python-dotenv==1.0.1
+whitenoise
+PyJWT<3
+cryptography
