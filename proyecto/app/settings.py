@@ -60,21 +60,22 @@ SOCIALACCOUNT_PROVIDERS = {
             'client_id': os.environ.get("GOOGLE_CLIENT_ID"),
             'secret': os.environ.get("GOOGLE_CLIENT_SECRET"),
             'key': ''
-        },
-        'AUTH_PARAMS': {
-            'redirect_uri': 'http://localhost:8000/accounts/google/login/callback/',  # URI válida
         }
     }
 }
 
+ACCOUNT_USERNAME_REQUIRED = False  # No se requiere nombre de usuario
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Verificación obligatoria de correo electrónico
+ACCOUNT_EMAIL_REQUIRED = True  # Correo electrónico es obligatorio
+SOCIAL_AUTH_GOOGLE_REDIRECT_URI = "http://172.20.10.2:8000/accounts/google/login/callback/"
+SOCIALACCOUNT_AUTO_SIGNUP = True  # Crear automáticamente la cuenta si no existe
+SOCIALACCOUNT_LOGIN_ON_GET = True  # Redirigir automáticamente después de la autenticación
+LOGIN_REDIRECT_URL = 'after' # app datosUsuario
 
-SOCIALACCOUNT_LOGIN_ON_GET = True # para evitar tener que ir a la pagina asquerosa sin css
-LOGIN_REDIRECT_URL = 'home' # app datosUsuario
-ACCOUNT_EMAIL_REQUIRED = True
 
 SITE_ID = 1  # Replace with the actual ID of your site in the admin panel
 
-# allauth
+
 
 
 MIDDLEWARE = [
@@ -88,6 +89,9 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware', #     WHITENOISE
     "allauth.account.middleware.AccountMiddleware", # django-allautgh
 ]
+
+# allauth
+
 
 ROOT_URLCONF = 'app.urls'
 
@@ -138,7 +142,7 @@ POSTGRES_READY= str(os.environ.get('POSTGRES_READY')) == "1"
 
 
 
-if DB_AVIAL and POSTGRES_READY and True==False:
+if DB_AVIAL and POSTGRES_READY:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",

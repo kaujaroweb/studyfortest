@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Default email if DJANGO_SUPERUSER_EMAIL is not set
