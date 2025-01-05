@@ -346,4 +346,78 @@ cd /app/
 /opt/venv/bin/python manage.py createsuperuser --email $DJANGO_SUPERUSER_EMAIL --noinput || true
 ```
 
+## 12.ALLAUTH PARA TENER LOGIN DE GOOGLE
+- Hay que tener todo esto en settings.py
 
+´´´
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+]
+
+# allauth
+
+AUTHENTICATION_BACKENDS = [
+   
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': os.environ.get("GOOGLE_CLIENT_ID"),
+            'secret': os.environ.get("GOOGLE_CLIENT_SECRET"),
+            'key': ''
+        }
+    }
+}
+
+ACCOUNT_USERNAME_REQUIRED = False  # No se requiere nombre de usuario
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Verificación obligatoria de correo electrónico
+ACCOUNT_EMAIL_REQUIRED = True  # Correo electrónico es obligatorio
+SOCIAL_AUTH_GOOGLE_REDIRECT_URI = "http://172.20.10.2:8000/accounts/google/login/callback/"
+SOCIALACCOUNT_AUTO_SIGNUP = True  # Crear automáticamente la cuenta si no existe
+SOCIALACCOUNT_LOGIN_ON_GET = True  # Redirigir automáticamente después de la autenticación
+LOGIN_REDIRECT_URL = 'after' # app datosUsuario
+
+
+SITE_ID = 1  # Replace with the actual ID of your site in the admin panel
+
+
+
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #     WHITENOISE
+    "allauth.account.middleware.AccountMiddleware", # django-allautgh
+]
+
+# allauth
+
+´´´
+
+- Despues de hacer eso hay que añadir esto a urls.py de "app":
+
+´´´
+path('accounts/', include('allauth.urls')),
+´´´
