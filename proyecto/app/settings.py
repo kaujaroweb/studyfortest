@@ -93,6 +93,28 @@ MIDDLEWARE = [
 # allauth
 
 
+# CONFIGURACION CORREOS
+# Configuración del backend de correo
+# Django utiliza un backend para enviar correos electrónicos. En este caso, usaremos el backend SMTP.
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+# Configuración del servidor SMTP de Gmail
+EMAIL_HOST = "smtp.gmail.com"  # Dirección del servidor SMTP de Gmail
+EMAIL_PORT = 587  # Puerto para conexión segura con TLS
+EMAIL_USE_TLS = True  # Usar TLS (Transport Layer Security) para cifrar la conexión
+
+# Credenciales de tu cuenta de Gmail
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")  # Tu dirección de correo de Gmail
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")  # Contraseña específica para aplicaciones
+
+# Configuración del remitente por defecto
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Dirección que aparecerá como remitente en los correos
+
+# CONFIGURACION CORREOS
+
+
+
+
 ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [

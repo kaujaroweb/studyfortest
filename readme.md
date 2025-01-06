@@ -349,7 +349,7 @@ cd /app/
 ## 12.ALLAUTH PARA TENER LOGIN DE GOOGLE
 - Hay que tener todo esto en settings.py
 
-´´´
+```
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -414,10 +414,84 @@ MIDDLEWARE = [
 
 # allauth
 
-´´´
+```
 
 - Despues de hacer eso hay que añadir esto a urls.py de "app":
 
-´´´
+```
 path('accounts/', include('allauth.urls')),
-´´´
+```
+
+## 13.CONFIGURACION PARA PODER MANDAR CORREOS
+
+- Esto es para poder enviar correos desde Django. Para esto lo voy a configurar con gmail.
+
+```
+# Configuración del backend de correo
+# Django utiliza un backend para enviar correos electrónicos. En este caso, usaremos el backend SMTP.
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+# Configuración del servidor SMTP de Gmail
+EMAIL_HOST = "smtp.gmail.com"  # Dirección del servidor SMTP de Gmail
+EMAIL_PORT = 587  # Puerto para conexión segura con TLS
+EMAIL_USE_TLS = True  # Usar TLS (Transport Layer Security) para cifrar la conexión
+
+# Credenciales de tu cuenta de Gmail
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")  # Tu dirección de correo de Gmail
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")  # Contraseña específica para aplicaciones
+
+# Configuración del remitente por defecto
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Dirección que aparecerá como remitente en los correos
+```
+
+- Para configurarlo en Gmail:
+
+Habilita la autenticación en dos pasos:
+
+Ve a tu Cuenta de Google.
+En la sección de seguridad, activa la autenticación en dos pasos.
+Genera una contraseña para aplicaciones:
+
+Entra en la sección de Contraseñas de Aplicaciones (está en la misma página de seguridad).
+Selecciona "Correo" como aplicación y "Otro" como dispositivo.
+Copia la contraseña generada y úsala en EMAIL_HOST_PASSWORD.
+Asegúrate de usar variables de entorno:
+
+Para mantener seguras tus credenciales, no las escribas directamente en settings.py. En lugar de eso, usa un archivo .env y una librería como python-decouple o dotenv:
+
+
+- Ejemplo de cómo enviar un correo
+Enviar un correo simple:
+
+```
+from django.core.mail import send_mail
+
+def enviar_correo_simple():
+    send_mail(
+        subject="Bienvenido a nuestra plataforma",
+        message="Gracias por registrarte. Este es un correo de prueba.",
+        from_email="tu_email@gmail.com",  # Puedes usar DEFAULT_FROM_EMAIL
+        recipient_list=["destinatario@example.com"],
+    )
+```
+
+Enviar un correo con HTML:
+````
+from django.core.mail import EmailMessage
+
+def enviar_correo_html():
+    asunto = "Tu pedido ha sido confirmado"
+    mensaje_html = """
+    <h1>¡Gracias por tu compra!</h1>
+    <p>Tu pedido ha sido procesado con éxito.</p>
+    """
+    email = EmailMessage(asunto, mensaje_html, to=["destinatario@example.com"])
+    email.content_subtype = "html"  # Especificar que el contenido es HTML
+    email.send()
+```
+
+- Para hacer pruebas y que los correos no se manden, si no que se printeen en consola, hay que poner esto:
+```
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+```
+#  
