@@ -25,6 +25,9 @@ urlpatterns = [
     path('afterlogin',views.afterLogin,name="after"),
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
+
+    # prueba correo
+    path('prueba-correo/', views.prueba_envio_correo, name='prueba-correo'),
 ]
 
 if settings.DEBUG:

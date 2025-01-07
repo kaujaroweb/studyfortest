@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+
+    # Aplicaciones propias
+    'correo', # esta gestiona todo lo relacionado con correos
 ]
 
 # allauth
@@ -94,6 +97,9 @@ MIDDLEWARE = [
 
 
 # CONFIGURACION CORREOS
+
+
+
 # Configuración del backend de correo
 # Django utiliza un backend para enviar correos electrónicos. En este caso, usaremos el backend SMTP.
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -109,6 +115,9 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")  # Contraseña espec
 
 # Configuración del remitente por defecto
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Dirección que aparecerá como remitente en los correos
+
+
+
 
 # CONFIGURACION CORREOS
 

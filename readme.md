@@ -1,6 +1,12 @@
 ## OBJETIVO : Explicar bien la base de la plantilla
 
 
+Link para tener el ".env":
+
+```
+de momento mejor no ponerlo publico
+```
+
 ## 1.PRIMER PASO
 - Crear carpeta para el proyecto ( en este caso "plantilla")
 - Dentro de ese directorio hacer 
@@ -24,9 +30,17 @@ django
 gunicorn
 requests
 django-dotenv
-pyscopg2-binary
+python-dotenv
+psycopg2-binary
 django-storages
 boto3
+django-tailwind
+django-allauth
+python-dotenv==1.0.1
+whitenoise
+PyJWT<3
+cryptography
+stripe
 ```
 ## 4.CREAR UN .ENV
 - A la altura de "proyecto", crear un archivo ".env"
@@ -302,13 +316,13 @@ services:
     depends_on:
       - postgres_db
     build:
-      context: ./web
+      context: ./proyecto
       dockerfile: Dockerfile
-    image: irakasles:latest
+    image: guria:latest
     ports:
       - "8000:8000"  # Map container port 8000 to host port 8000
     env_file:
-      - web/.env
+      - proyecto/.env
     environment:
       - PORT:8000 # Example environment variable
     command: sh -c  "chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
@@ -316,7 +330,7 @@ services:
   postgres_db:
     image: postgres
     env_file:
-      - web/.env
+      - proyecto/.env
     expose:
       - 5432
     volumes:
@@ -476,7 +490,7 @@ def enviar_correo_simple():
 ```
 
 Enviar un correo con HTML:
-````
+```
 from django.core.mail import EmailMessage
 
 def enviar_correo_html():
@@ -494,4 +508,156 @@ def enviar_correo_html():
 ```
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ```
-#  
+
+## 14.CREAR APP "CORREO" PARA PODER MANDAR GESTIONAR LA LOGICA DE MANDAR CORREOS DESE AHI
+
+- Primero, esto se hace para modularizar la aplicacion y que las diferentes logicas esten separadas
+- Desde dentro de "proyecto" en el cmd, escribir este comando:
+```
+python manage.py startapp correo
+
+```
+- Ahora en "app", settings.py meter la aplicacion "correo":
+
+```
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
+    # Aplicaciones propias
+    'correo', # esta gestiona todo lo relacionado con correos
+]
+
+```
+
+- Ahora dentro de "correo" crear un archivo "utils.py" en el cual van a ir las funciones para mandar correos
+
+- Este es el codigo dentro de "correo" "utils.py", es codigo de prueba:
+```
+from django.core.mail import send_mail, EmailMessage
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.template.loader import render_to_string
+
+# Función para enviar un correo simple
+def enviar_correo_simple(asunto, mensaje, destinatarios):
+    """
+    Envía un correo simple a una lista de destinatarios.
+    """
+    send_mail(
+        asunto, 
+        mensaje, 
+        settings.DEFAULT_FROM_EMAIL, 
+        destinatarios
+    )
+
+# Función para enviar un correo HTML
+def enviar_correo_html(asunto, contenido_html, destinatarios):
+    """
+    Envía un correo HTML a una lista de destinatarios.
+    """
+    email = EmailMessage(
+        asunto, 
+        contenido_html, 
+        settings.DEFAULT_FROM_EMAIL, 
+        destinatarios
+    )
+    email.content_subtype = "html"  # Especifica que el contenido es HTML
+    email.send()
+
+# Función para enviar un correo a todos los usuarios registrados
+def enviar_correo_a_todos_los_usuarios(asunto, mensaje):
+    """
+    Envía un correo a todos los usuarios registrados en la base de datos.
+    """
+    usuarios = User.objects.all()  # Obtiene todos los usuarios
+    destinatarios = [usuario.email for usuario in usuarios if usuario.email]  # Filtra los usuarios sin email
+    
+    if destinatarios:  # Solo envía si hay destinatarios
+        enviar_correo_simple(asunto, mensaje, destinatarios)
+
+# Función para enviar un correo con plantilla
+def enviar_correo_con_plantilla(asunto, plantilla, context, destinatarios):
+    """
+    Envía un correo usando una plantilla de Django.
+    """
+    html_content = render_to_string(plantilla, context)
+    email = EmailMessage(asunto, html_content, settings.DEFAULT_FROM_EMAIL, destinatarios)
+    email.content_subtype = "html"
+    email.send()
+
+# Función para enviar un correo a todos los usuarios con plantilla
+def enviar_correo_a_todos_los_usuarios_con_plantilla(asunto, plantilla, context):
+    """
+    Envía un correo con una plantilla a todos los usuarios registrados.
+    """
+    usuarios = User.objects.all()  # Obtiene todos los usuarios
+    destinatarios = [usuario.email for usuario in usuarios if usuario.email]  # Filtra los usuarios sin email
+    
+    if destinatarios:  # Solo envía si hay destinatarios
+        enviar_correo_con_plantilla(asunto, plantilla, context, destinatarios)
+
+```
+- Para comprobarlo tambien he creado una view en "app" views.py y la he añadido a urls.py. Asi he podido comprobar que funciona!
+
+
+## 15.PLANTILLA SIMPLE PARA EL FRONTEND CON TAILWIND
+
+- Primero cambiar tailwind para tener un "dark" mode. Para esto ir a "tailwind.config.js" y cambiarlo a esto:
+```
+// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: 'class', // Use the class strategy for dark mode
+  // other configurations...
+}
+
+```
+
+
+## 16.CREAR UNA APP PARA MANEJAR PAGOS CON STRIPE
+
+- Lo primero, añadir a requirements.txt la libreria de stripe
+```
+django
+gunicorn
+requests
+django-dotenv
+psycopg2-binary
+django-storages
+boto3
+django-tailwind
+django-allauth
+python-dotenv==1.0.1
+whitenoise
+PyJWT<3
+cryptography
+stripe
+```
+
+- Despues hay que hacerse una cuenta de Stripe y conseguir las claves ( voy a usar las de prueba y meterlas en el .env)
+
+```
+STRIPE_TEST_SECRET_KEY =claveprueba
+STRIPE_TEST_PUBLIC_KEY =claveorueba
+```
+- Despues hay que crear una la app 
+
+tengo que cambiar el requirements.txt del principio para meter stripe
+
+
+
+
+
+
+
+
+

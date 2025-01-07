@@ -2,19 +2,93 @@
 {% load socialaccount %}
 
 {% block content %}
-<div class="text-red-500 font-bold">Hello, Tailwind!</div>
+  <!-- Header -->
+  <header class="bg-[#fdfdf6] dark:bg-gray-800 fixed top-0 left-0 w-full shadow-md z-50">
+    <div class="w-full px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a href="#" title="" class="flex">
+            <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <g stroke="black" stroke-width="8">
+                <rect x="50" y="40" width="20" height="120" fill="red"/>
+                <rect x="90" y="40" width="20" height="120" fill="red"/>
+                <path d="M 50 80 L 130 40" fill="none" stroke="red" stroke-width="8"/>
+                <path d="M 50 120 L 130 180" fill="none" stroke="red" stroke-width="8"/>
+              </g>
+            </svg>
+          </a>
+        </div>
 
-<a href="{% provider_login_url 'google' %}" title="" class="inline-flex items-center px-6 py-5 text-base font-semibold text-black transition-all duration-200 bg-green-300 mt-9 hover:bg-green-500 " role="button">
-    <svg class="w-6 h-6 mr-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.122 17.645a7.185 7.185 0 0 1-2.656 2.495 7.06 7.06 0 0 1-3.52.853 6.617 6.617 0 0 1-3.306-.718 6.73 6.73 0 0 1-2.54-2.266c-2.672-4.57.287-8.846.887-9.668A4.448 4.448 0 0 0 8.07 6.31 4.49 4.49 0 0 0 7.997 4c1.284.965 6.43 3.258 5.525 10.631 1.496-1.136 2.7-3.046 2.846-6.216 1.43 1.061 3.985 5.462 1.754 9.23Z"/>
-    </svg>
-    Se de los 100 primeros creadores, ten una cuenta gratis para siempre!
-</a>
-<div class="test-class">
-    Esto debería ser rojo con texto blanco.
-  </div>
-<div class="bg-blue-500 text-white p-4">
-¡Hola, mundo!
-</div>
-    
+        <!-- Contenedor para alinear botones (modo oscuro y login con Google) -->
+        <div class="flex items-center space-x-4">
+          <!-- Dark Mode Toggle Button -->
+          <button id="dark-mode-toggle" class="p-2 bg-gray-200 dark:bg-gray-600 rounded-full">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 0 1-.5-17.986V3c-.354.966-.5 1.911-.5 3a9 9 0 0 0 9 9c.239 0 .254.018.488 0A9.004 9.004 0 0 1 12 21Z"/>
+            </svg>
+          </button>
+
+          <!-- Login Button (Google) -->
+          <a href="{% provider_login_url 'google' %}" title="" class="inline-flex items-center" role="button">
+            <button type="button" 
+              class="px-5 py-3 inline-flex items-center rounded-lg text-[#333] text-base tracking-wider font-semibold border-none outline-none shadow-lg bg-gray-50 hover:bg-gray-100 active:bg-gray-50 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22px" fill="#fff" class="inline mr-3" viewBox="0 0 512 512">
+                <path fill="#fbbd00" d="M120 256c0-25.367 6.989-49.13 19.131-69.477v-86.308H52.823C18.568 144.703 0 198.922 0 256s18.568 111.297 52.823 155.785h86.308v-86.308C126.989 305.13 120 281.367 120 256z"/>
+                <path fill="#0f9d58" d="m256 392-60 60 60 60c57.079 0 111.297-18.568 155.785-52.823v-86.216h-86.216C305.044 385.147 281.181 392 256 392z"/>
+                <path fill="#31aa52" d="m139.131 325.477-86.308 86.308a260.085 260.0 0 0 0 22.158 25.235C123.333 485.371 187.62 512 256 512V392c-49.624 0-93.117-26.72-116.869-66.523z"/>
+                <path fill="#3c79e6" d="M512 256a258.24 258.24 0 0 0-4.192-46.377l-2.251-12.299H256v120h121.452a135.385 135.385 0 0 1-51.884 55.638l86.216 86.216a260.085 260.085 0 0 0 25.235-22.158C485.371 388.667 512 324.38 512 256z"/>
+                <path fill="#cf2d48" d="m352.167 159.833 10.606 10.606 84.853-84.852-10.606-10.606C388.668 26.629 324.381 0 256 0l-60 60 60 60c36.326 0 70.479 14.146 96.167 39.833z"/>
+                <path fill="#eb4132" d="M256 120V0C187.62 0 123.333 26.629 74.98 74.98a259.849 259.849 0 0 0-22.158 25.235l86.308 86.308C162.883 146.72 206.376 120 256 120z"/>
+              </svg>
+              Empieza con Google
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dummy content to test scrolling -->
+  <main class="pt-20">
+    <div class="h-screen bg-gray-100 dark:bg-gray-900 flex justify-center items-center">
+      <p class="text-xl font-medium text-gray-900 dark:text-white">Aqui el contenido principal!!</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#fdfdf6] py-8 dark:bg-gray-800">
+    <div class="flex flex-col items-center">
+      <div class="mb-4">
+        <svg width="100" height="100" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="black" stroke-width="8">
+            <rect x="50" y="40" width="20" height="120" fill="red"/>
+            <rect x="90" y="40" width="20" height="120" fill="red"/>
+            <path d="M 50 80 L 130 40" fill="none" stroke="red" stroke-width="8"/>
+            <path d="M 50 120 L 130 180" fill="none" stroke="red" stroke-width="8"/>
+          </g>
+        </svg>
+      </div>
+      <div class="text-center text-gray-600 dark:text-gray-300">
+        <p>&copy; 2025 | Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Dark Mode -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Elimina el modo oscuro por defecto
+      document.documentElement.classList.remove('dark');
+
+      // Obtener el botón para alternar el modo oscuro
+      const darkModeToggle = document.getElementById('dark-mode-toggle');
+      
+      // Escuchar el clic en el botón para cambiar el tema
+      darkModeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark'); // Alternar entre claro y oscuro
+      });
+    });
+  </script>
+
 {% endblock %}
