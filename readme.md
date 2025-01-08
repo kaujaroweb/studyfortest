@@ -184,7 +184,41 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,  document_root = settings.STATIC_ROOT)
 ```
 - Para gestionar los templates hay que añadir "templates" a la parte de templates en "settings.py" en "DIRS"
+
+### 8.2. Crear base.html y añadir un favicon.ico
+- primero tener una imagen o un svg que queramos de favicon y llevarla a esta pagina:
+```
+https://www.svgviewer.dev/svg-to-png
+```
+- Dentro de proyecto, en "static" crear un nuevo folder llamado "img", y guardar ahi el favicon.ico (Antes de eso conseguir pasar de svg o imagen a favicon)
 - Ahora en templates crear un base.html y un carpeta llamada "pages" para tener algo de html como ejemplo
+```
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+    <title>{% block title %}Guria Plantilla{% endblock %}</title>
+
+</head>
+
+<body>
+    <div>
+        {% block content %}
+        <!-- Content will go here -->
+        {% endblock %}
+    </div>
+    
+
+</body>
+
+</html>
+```
 - Añadir un views.py a "app"
 
 
@@ -621,7 +655,7 @@ module.exports = {
 }
 
 ```
-
+- 
 
 ## 16.CREAR UNA APP PARA MANEJAR PAGOS CON STRIPE
 
