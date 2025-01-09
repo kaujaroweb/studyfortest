@@ -287,7 +287,8 @@ ENV PYTHONUNBUFFERED=1
 RUN apt-get update && apt-get install -y \
     libpq-dev gcc \
     nodejs \
-    npm && \
+    npm \
+    dos2unix && \  
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -303,6 +304,9 @@ WORKDIR /app
 # Copia todos los archivos del proyecto local al contenedor
 COPY . /app/
 
+# Convierte los archivos .sh para asegurarse de que tengan las terminaciones de línea correctas (Unix)
+RUN dos2unix /app/migrate.sh /app/entrypoint.sh
+
 # Instala las dependencias de Python especificadas en requirements.txt
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
@@ -314,10 +318,11 @@ RUN npm install -g tailwindcss
 RUN npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify
 
 # Asegura que el script de entrada sea ejecutable
-RUN chmod +x entrypoint.sh
+RUN chmod +x /app/migrate.sh /app/entrypoint.sh
 
 # Define el script qu
 CMD ["./entrypoint.sh"]
+
 ```
 
 - Ahora hay que crear el archivo "entrypoint.sh"
