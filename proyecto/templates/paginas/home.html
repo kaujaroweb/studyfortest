@@ -50,13 +50,78 @@
   </header>
 
   <!-- Dummy content to test scrolling -->
-  <main class="pt-20">
-    <div class="h-screen bg-gray-100 dark:bg-gray-900 flex justify-center items-center">
-      <p class="font-sans text-xl font-medium text-gray-900 dark:text-white">
-        Aquí el contenido principal!!
-      </p>
+  <!-- Banner Section -->
+  <main class="pt-24  bg-gray-100 dark:bg-slate-700 p-4">
+    <div class="flex flex-col md:flex-row">
+        <!-- Banner Area -->
+      <div class="flex-1 flex flex-col justify-center items-center border-b-2 border-black p-4">
+        <h1 class="text-5xl font-bold text-gray-800 dark:text-gray-100">
+          Aprueba todos tus <br>examenes test <br><br><span class="bg-red-500 text-white px-2">con Kaujaro</span>
+        </h1>
+        <p class="mt-6 text-gray-600 dark:text-gray-300">
+          Crea examenes <span class="text-red-600 font-bold">REALISTAS</span> de manera facil y de forma 
+          <span class="text-red-600 font-bold">GRATUITA</span>
+        </p>
+      </div>
+    
+      <!-- Drag Area -->
+      <div class="flex-1 flex flex-col justify-center items-center p-6 mt-4 md:mt-0 md:ml-4">
+        <div class="flex flex-col items-center justify-center border-2 border-dashed border-gray-400 dark:border-gray-600 p-6 rounded-md w-full max-w-md">
+          <!-- PDF Icon -->
+          <div class="mb-4">
+            <svg class="w-12 h-12 text-gray-800 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
+            </svg>
+          </div>
+    
+          <!-- Drag Instructions -->
+          <p class="text-gray-800 dark:text-gray-100 text-lg font-semibold">Arrastra tu <span class="text-red-500">PDF</span> aquí</p>
+          <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">o haz clic para seleccionar un archivo</p>
+    
+          <!-- File Input (hidden) -->
+          <input type="file" accept="application/pdf" class="hidden" id="pdfInput" />
+        </div>
+      </div>
     </div>
+    
+
+    <div class="mt-8 p-4 w-full flex flex-col items-center justify-center">
+      <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+        ¿Por qué elegir esta herramienta?
+      </h2>
+      <ul class="space-y-4">
+        <li class="flex items-center">
+          <svg class="w-[34px] h-[34px] text-red-500 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5"/>
+          </svg>
+          <span class="text-gray-800 dark:text-gray-100 font-semibold">Es totalmente gratis!!</span>
+        </li>
+        <li class="flex items-center">
+          <svg class="w-[34px] h-[34px] text-red-500 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5"/>
+          </svg>
+          <span class="text-gray-800 dark:text-gray-100 font-semibold">Hecha para estudiantes de todos los niveles</span>
+        </li>
+        <li class="flex items-center">
+          <svg class="w-[34px] h-[34px] text-red-500 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5"/>
+          </svg>
+          <span class="text-gray-800 dark:text-gray-100 font-semibold">Es la mejor tecnica para estudiar --> Practicando</span>
+        </li>
+        <li class="flex items-center">
+          <svg class="w-[34px] h-[34px] text-red-500 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5"/>
+          </svg>
+          <span class="text-gray-800 dark:text-gray-100 font-semibold">Muy Sencillo de usar!!</span>
+        </li>
+      </ul>
+    </div>
+    
   </main>
+  
+
+  
+  
 
   <!-- Footer -->
   <footer class="bg-[#fdfdf6] py-8 dark:bg-gray-800">
