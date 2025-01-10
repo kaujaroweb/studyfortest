@@ -52,43 +52,63 @@
   <!-- Banner Section -->
   <main class="mt-32 bg-gray-100 dark:bg-slate-700 p-4">
     <div class="flex flex-col md:flex-row">
-        <!-- Banner Area -->
-      <div class="flex-1 flex flex-col justify-center items-center border-b-2 border-black p-4">
+      <!-- Banner Area -->
+      <div class="w-full md:w-1/2 flex flex-col justify-center items-center border-b-2 border-black p-4">
         <h1 class="text-5xl font-bold text-gray-800 dark:text-gray-100">
-          Aprueba. <br><br> Practica. <br><br> 
+          Aprueba. <br><br> Practica. <br><br>
           <span class="flex items-center bg-red-200 dark:bg-red-700 dark:text-white rotate-6">
             Superate
-            <svg class="w-12 h-12 ml-1 text-red-500 dark:text-yellow-400  items-center" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.122 17.645a7.185 7.185 0 0 1-2.656 2.495 7.06 7.06 0 0 1-3.52.853 6.617 6.617 0 0 1-3.306-.718 6.73 6.73 0 0 1-2.54-2.266c-2.672-4.57.287-8.846.887-9.668A4.448 4.448 0 0 0 8.07 6.31 4.49 4.49 0 0 0 7.997 4c1.284.965 6.43 3.258 5.525 10.631 1.496-1.136 2.7-3.046 2.846-6.216 1.43 1.061 3.985 5.462 1.754 9.23Z"/>
+            <svg class="w-12 h-12 ml-1 text-red-500 dark:text-yellow-400 items-center" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.122 17.645a7.185 7.185 0 0 1-2.656 2.495 7.06 7.06 0 0 1-3.52.853 6.617 6.617 0 0 1-3.306-.718 6.73 6.73 0 0 1-2.54-2.266c-2.672-4.57.287-8.846.887-9.668A4.448 4.448 0 0 0 8.07 6.31 4.49 4.49 0 0 0 7.997 4c1.284.965 6.43 3.258 5.525 10.631 1.496-1.136 2.7-3.046 2.846-6.216 1.43 1.061 3.985 5.462 1.754 9.23Z" />
             </svg>
           </span>
         </h1>
-        
+    
         <p class="mt-11 text-gray-600 dark:text-gray-300">
-          Crea examenes <span class="text-red-600 font-bold">REALISTAS</span> de manera facil y de forma 
+          Crea examenes <span class="text-red-600 font-bold">REALISTAS</span> de manera facil y de forma
           <span class="text-red-600 font-bold">GRATUITA</span>
         </p>
       </div>
     
-      <!-- Drag Area -->
-      <div class="flex-1 flex flex-col justify-center items-center p-6 mt-4 md:mt-0 md:ml-4">
-        <div class="flex flex-col items-center justify-center border-2 border-dashed border-gray-400 dark:border-gray-600 p-6 rounded-md w-full max-w-md">
-          <!-- PDF Icon -->
-          <div class="mb-4">
-            <svg class="w-12 h-12 text-gray-800 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z"/>
-            </svg>
+      <!-- Stepper Area -->
+      <div class="w-full md:w-1/2 flex flex-col justify-center items-center p-6 mt-4 md:mt-0 md:ml-4">
+        <div class="w-full max-w-md">
+          <!-- Stepper -->
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center">
+              <div class="w-8 h-8 flex items-center justify-center rounded-full bg-yellow-300 text-black font-bold">1</div>
+              <p class="ml-2 text-gray-800 dark:text-gray-100 font-semibold">Sube tu PDF</p>
+            </div>
+            <div class="h-1 flex-1 bg-gray-300 mx-2"></div>
+            <div class="flex items-center">
+              <div class="w-8 h-8 flex items-center justify-center rounded-full bg-orange-400 text-black font-bold">2</div>
+              <p class="ml-2 text-gray-800 dark:text-gray-100 font-semibold">Genera preguntas</p>
+            </div>
+            <div class="h-1 flex-1 bg-gray-300 mx-2"></div>
+            <div class="flex items-center">
+              <div class="w-8 h-8 flex items-center justify-center rounded-full bg-red-500 text-black font-bold">3</div>
+              <p class="ml-2 text-gray-800 dark:text-gray-100 font-semibold">Practica</p>
+            </div>
           </div>
     
-          <!-- Drag Instructions -->
-          <p class="text-gray-800 dark:text-gray-100 text-lg font-semibold">Arrastra tu <span class="text-red-500">PDF</span> aquí</p>
-          <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">o haz clic para seleccionar un archivo</p>
+          <!-- Description -->
+          <p class="text-gray-600 dark:text-gray-400 text-sm text-center mb-6">
+            Sigue estos pasos para generar tu examen de manera rápida y sencilla.
+          </p>
     
-          <!-- File Input (hidden) -->
-          <input type="file" accept="application/pdf" class="hidden" id="pdfInput" />
+          <!-- Button -->
+          <button class="w-full bg-red-500 text-white py-2.5 rounded-md text-lg font-semibold shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 flex items-center justify-center">
+            Comenzar Ahora
+            <svg class="w-6 h-6 ml-2 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.6144 7.19994c.3479.48981.5999 1.15357.5999 1.80006 0 1.6569-1.3432 3-3 3-1.6569 0-3.00004-1.3431-3.00004-3 0-.67539.22319-1.29865.59983-1.80006M6.21426 6v4m0-4 6.00004-3 6 3-6 2-2.40021-.80006M6.21426 6l3.59983 1.19994M6.21426 19.8013v-2.1525c0-1.6825 1.27251-3.3075 2.95093-3.6488l3.04911 2.9345 3-2.9441c1.7026.3193 3 1.9596 3 3.6584v2.1525c0 .6312-.5373 1.1429-1.2 1.1429H7.41426c-.66274 0-1.2-.5117-1.2-1.1429Z"/>
+            </svg>
+          </button>
+          
         </div>
       </div>
     </div>
+    
+    
     
 
     <!-- LISTA COSAS POR LAS QUE USAR -->
@@ -130,10 +150,10 @@
         <div class="mx-auto aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
       </div>
       <div class="mx-auto max-w-4xl text-center">
-        <h2 class="text-base/7 font-semibold text-indigo-600">Pricing</h2>
+        <h2 class="text-base/7 font-semibold text-red-600"></h2>
         <p class="mt-2 text-balance text-5xl font-semibold tracking-tight text-gray-900 dark:text-slate-200 sm:text-6xl">Escoge el mejor plan para ti</p>
       </div>
-      <p class="mx-auto mt-6 max-w-2xl text-pretty text-center text-lg font-medium text-indigo-600 sm:text-xl/8">Choose an affordable plan that’s packed with the best features for engaging your audience, creating customer loyalty, and driving sales.</p>
+      <p class="mx-auto mt-6 max-w-2xl text-pretty text-center text-lg font-medium text-indigo-600 sm:text-xl/8">Escoge el mejor plan, equipado con todo lo que necesitas para tener exito en tus estudios.</p>
       <div class="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
         <div class="rounded-3xl rounded-t-3xl bg-white/60 p-8 ring-1 ring-gray-900/10 sm:mx-8 sm:rounded-b-none sm:p-10 lg:mx-0 lg:rounded-bl-3xl lg:rounded-tr-none">
           <h3 id="tier-hobby" class="text-base/7 font-semibold text-indigo-600">Hobby</h3>
@@ -221,10 +241,10 @@
               Dos formatos para hacer examenes
             </li>
           </ul>
-          <a href="#" aria-describedby="tier-enterprise" class="mt-8 inline-flex items-center justify-center rounded-md bg-yellow-500 px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-lime-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 sm:mt-10">
+          <a href="#" aria-describedby="tier-enterprise" class="mt-8 inline-flex items-center justify-center rounded-md bg-yellow-500 px-3.5 py-2.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-yellow-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 sm:mt-10">
             <span class="flex items-center justify-center">
               Empieza hoy
-              <svg class="w-6 h-6 ml-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <svg class="w-6 h-6 ml-2 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10.051 8.102-3.778.322-1.994 1.994a.94.94 0 0 0 .533 1.6l2.698.316m8.39 1.617-.322 3.78-1.994 1.994a.94.94 0 0 1-1.595-.533l-.4-2.652m8.166-11.174a1.366 1.366 0 0 0-1.12-1.12c-1.616-.279-4.906-.623-6.38.853-1.671 1.672-5.211 8.015-6.31 10.023a.932.932 0 0 0 .162 1.111l.828.835.833.832a.932.932 0 0 0 1.111.163c2.008-1.102 8.35-4.642 10.021-6.312 1.475-1.478 1.133-4.77.855-6.385Zm-2.961 3.722a1.88 1.88 0 1 1-3.76 0 1.88 1.88 0 0 1 3.76 0Z"/>
               </svg>
             </span>
