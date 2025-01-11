@@ -11,3 +11,5 @@ python-dotenv==1.0.1
 whitenoise
 PyJWT<3
 cryptography
+PyPDF2
+ollama

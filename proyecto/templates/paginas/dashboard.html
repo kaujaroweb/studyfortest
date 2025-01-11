@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
+{% block content %}
+<!-- Header -->
+<header class="bg-[#fdfdf6] dark:bg-gray-800 fixed top-0 left-0 w-full shadow-md z-50">
+    <div class="w-full px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="" title="" class="flex">
+                    <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="black" stroke-width="8">
+                            <rect x="50" y="40" width="20" height="120" fill="red" />
+                            <rect x="90" y="40" width="20" height="120" fill="red" />
+                            <path d="M 50 80 L 130 40" fill="none" stroke="red" stroke-width="8" />
+                            <path d="M 50 120 L 130 180" fill="none" stroke="red" stroke-width="8" />
+                        </g>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Contenedor para alinear botones (modo oscuro y login con Google) -->
+            <div class="flex items-center space-x-4">
+                <!-- Dark Mode Toggle Button -->
+                <button id="dark-mode-toggle" class="p-2 bg-gray-200 dark:bg-gray-600 rounded-full">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 21a9 9 0 0 1-.5-17.986V3c-.354.966-.5 1.911-.5 3a9 9 0 0 0 9 9c.239 0 .254.018.488 0A9.004 9.004 0 0 1 12 21Z" />
+                    </svg>
+                </button>
+
+                <!-- Login Button (Google) -->
+                <a href="{% provider_login_url 'google' %}" title="" class="inline-flex items-center" role="button">
+                    <button type="button"
+                        class="px-5 py-3 inline-flex items-center rounded-lg text-[#333] text-base tracking-wider font-semibold border-none outline-none shadow-lg bg-gray-50 hover:bg-gray-100 active:bg-gray-50 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22px" fill="#fff" class="inline mr-3"
+                            viewBox="0 0 512 512">
+                            <path fill="#fbbd00"
+                                d="M120 256c0-25.367 6.989-49.13 19.131-69.477v-86.308H52.823C18.568 144.703 0 198.922 0 256s18.568 111.297 52.823 155.785h86.308v-86.308C126.989 305.13 120 281.367 120 256z" />
+                            <path fill="#0f9d58"
+                                d="m256 392-60 60 60 60c57.079 0 111.297-18.568 155.785-52.823v-86.216h-86.216C305.044 385.147 281.181 392 256 392z" />
+                            <path fill="#31aa52"
+                                d="m139.131 325.477-86.308 86.308a260.085 260.0 0 0 0 22.158 25.235C123.333 485.371 187.62 512 256 512V392c-49.624 0-93.117-26.72-116.869-66.523z" />
+                            <path fill="#3c79e6"
+                                d="M512 256a258.24 258.24 0 0 0-4.192-46.377l-2.251-12.299H256v120h121.452a135.385 135.385 0 0 1-51.884 55.638l86.216 86.216a260.085 260.085 0 0 0 25.235-22.158C485.371 388.667 512 324.38 512 256z" />
+                            <path fill="#cf2d48"
+                                d="m352.167 159.833 10.606 10.606 84.853-84.852-10.606-10.606C388.668 26.629 324.381 0 256 0l-60 60 60 60c36.326 0 70.479 14.146 96.167 39.833z" />
+                            <path fill="#eb4132"
+                                d="M256 120V0C187.62 0 123.333 26.629 74.98 74.98a259.849 259.849 0 0 0-22.158 25.235l86.308 86.308C162.883 146.72 206.376 120 256 120z" />
+                        </svg>
+                        Empieza con Google
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<main class="mt-24 bg-gray-100 dark:bg-slate-700 font-poppins p-4">
+    <div class="flex justify-center items-center min-h-screen ">
+        
+        <div class="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 w-full max-w-md">
+            <div class="mb-6 items-center-center">
+                <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="black" stroke-width="8">
+                        <rect x="50" y="40" width="20" height="120" fill="red" />
+                        <rect x="90" y="40" width="20" height="120" fill="red" />
+                        <path d="M 50 80 L 130 40" fill="none" stroke="red" stroke-width="8" />
+                        <path d="M 50 120 L 130 180" fill="none" stroke="red" stroke-width="8" />
+                    </g>
+                </svg>
+            </div>
+            <!-- Título -->
+            <h2 class="text-xl font-bold text-center mb-4 dark:text-white">Arrastra tu PDF</h2>
+
+            <!-- Área de arrastrar o seleccionar PDF -->
+            <div
+                class="border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center hover:border-gray-400 cursor-pointer">
+                <svg class="w-[34px] h-[34px] text-gray-800 dark:text-white mb-2" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"
+                        d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z" />
+                </svg>
+                <p class="text-gray-600 dark:text-gray-200 text-sm items-center">Arrastra un archivo aquí o haz clic para seleccionarlo</p>
+            </div>
+
+
+            <!-- Botones elegibles -->
+            <!-- Texto de encabezado para la dificultad -->
+            <div class="mt-6 text-center">
+                <p class="text-gray-800 dark:text-gray-200 font-medium">Escoge la dificultad de las preguntas</p>
+            </div>
+
+            <!-- Botones elegibles -->
+            <div class="flex justify-center space-x-4 mt-4">
+                <button
+                    class="px-4 py-2 font-semibold rounded-lg border border-gray-300 text-gray-800 bg-gray-100 hover:bg-gray-200 focus:bg-red-500 focus:text-white focus:ring-2 focus:ring-blue-300 transition">Fácil</button>
+                <button
+                    class="px-4 py-2 font-semibold rounded-lg border border-gray-300 text-gray-800 bg-gray-100 hover:bg-gray-200 focus:bg-red-500 focus:text-white focus:ring-2 focus:ring-blue-300 transition">Medio</button>
+                <button
+                    class="px-4 py-2 font-semibold rounded-lg border border-gray-300 text-gray-800 bg-gray-100 hover:bg-gray-200 focus:bg-yellow-500 focus:text-white focus:ring-2 focus:ring-blue-300 transition">
+                    <span class="flex ">
+                        Difícil
+                        <svg class="w-[20px] h-[20px]  text-black " aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.7"
+                                d="m8.032 12 1.984 1.984 4.96-4.96m4.55 5.272.893-.893a1.984 1.984 0 0 0 0-2.806l-.893-.893a1.984 1.984 0 0 1-.581-1.403V7.04a1.984 1.984 0 0 0-1.984-1.984h-1.262a1.983 1.983 0 0 1-1.403-.581l-.893-.893a1.984 1.984 0 0 0-2.806 0l-.893.893a1.984 1.984 0 0 1-1.403.581H7.04A1.984 1.984 0 0 0 5.055 7.04v1.262c0 .527-.209 1.031-.581 1.403l-.893.893a1.984 1.984 0 0 0 0 2.806l.893.893c.372.372.581.876.581 1.403v1.262a1.984 1.984 0 0 0 1.984 1.984h1.262c.527 0 1.031.209 1.403.581l.893.893a1.984 1.984 0 0 0 2.806 0l.893-.893a1.985 1.985 0 0 1 1.403-.581h1.262a1.984 1.984 0 0 0 1.984-1.984V15.7c0-.527.209-1.031.581-1.403Z" />
+                        </svg>
+
+
+                    </span>
+                </button>
+            </div>
+
+
+            <!-- Botón para crear examen -->
+            <div class="mt-6 text-center">
+                <button id="create-exam" class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-700 transition">
+                    Crear examen
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="text-output" class="mt-4">
+
+    </div>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-[#fdfdf6] py-8 dark:bg-gray-800">
+    <div class="flex flex-col items-center">
+        <div class="mb-4">
+            <svg width="100" height="100" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <g stroke="black" stroke-width="8">
+                    <rect x="50" y="40" width="20" height="120" fill="red" />
+                    <rect x="90" y="40" width="20" height="120" fill="red" />
+                    <path d="M 50 80 L 130 40" fill="none" stroke="red" stroke-width="8" />
+                    <path d="M 50 120 L 130 180" fill="none" stroke="red" stroke-width="8" />
+                </g>
+            </svg>
+        </div>
+        <div class="text-center text-gray-600 dark:text-gray-300">
+            <p>&copy; 2025 | Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Script for Dark Mode -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Elimina el modo oscuro por defecto
+        document.documentElement.classList.remove('dark');
+
+        // Obtener el botón para alternar el modo oscuro
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+        // Escuchar el clic en el botón para cambiar el tema
+        darkModeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark'); // Alternar entre claro y oscuro
+        });
+    });
+</script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+
+{% endblock %}

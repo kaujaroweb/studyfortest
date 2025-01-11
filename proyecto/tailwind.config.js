@@ -6,7 +6,12 @@ module.exports = {
    'templates/**/*.html',       // Archivos HTML principales       // Archivos CSS adicionales
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'], // Define the Poppins font
+      },
+
+    },
   },
   plugins: [],
 }

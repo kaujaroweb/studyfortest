@@ -5,6 +5,8 @@ def home_view(request):
     return render(request, "paginas/home.html",{})
 def afterLogin(request):
     return render(request, "paginas/afterlogin.html",{})
+def dashboard_view(request):
+    return render(request,"paginas/dashboard.html",{})
 
 
 
