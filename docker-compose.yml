@@ -2,6 +2,7 @@ services:
   web:
     depends_on:
       - postgres_db
+      - ollama  # Add dependency on the Ollama service
     build:
       context: ./proyecto
       dockerfile: Dockerfile
@@ -12,7 +13,7 @@ services:
       - proyecto/.env
     environment:
       - PORT:8000 # Example environment variable
-    command: sh -c  "chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
+    command: sh -c "chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
 
   postgres_db:
     image: postgres
@@ -23,5 +24,14 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/  # Fixed volume as a list
 
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"  # Expose Ollama API port
+    volumes:
+      - ollama_volume:/root/.ollama
+    # Removed GPU-specific configurations
+
 volumes:
-  postgres_data:  # Declare the named volume
+  postgres_data:  # Declare the named volume for PostgreSQL
+  ollama_volume:  # Declare the named volume for Ollama

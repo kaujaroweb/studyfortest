@@ -13,3 +13,5 @@ PyJWT<3
 cryptography
 PyPDF2
 ollama
+transformers
+torch
